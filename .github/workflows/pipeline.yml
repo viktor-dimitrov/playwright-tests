@@ -22,10 +22,10 @@ jobs:
         node-version: 20.x
         cache: 'npm'
     - name: Install dependencies
-      uses: npm install
+      run: npm install
     - name: Start backend
-      uses: npm run start-be
+      run: npm run start-be
     - name: Start frontend
-      uses: npm run start-fe
+      run: npm run start-fe
     - name: Execute playright tests
-      uses: npm run test-ui      
+      run: npm run test-ui      
