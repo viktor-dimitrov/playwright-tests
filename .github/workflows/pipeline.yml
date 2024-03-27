@@ -34,4 +34,28 @@ jobs:
     - name: Install Playwright browsers
       run: npx playwright install  
     - name: Execute playwright tests
-      run: npm run test-ui      
+      run: npm run test-ui   
+      
+  deploy-be:
+    runs-on: ubuntu-latest
+    needs: build_and_test
+
+    steps:
+    - name: Deploy to production
+      uses: johnbeynon/render-deploy-action@v0.0.8
+      with:
+        service-id: ${{ secrets.SERVICE_BE_ID }}
+        api-key: ${{ secrets.RENDER_TOKEN }}
+   
+
+  deploy-fe:
+    runs-on: ubuntu-latest
+    needs: build_and_test
+
+    steps:
+    - name: Deploy to production
+      uses: johnbeynon/render-deploy-action@v0.0.8
+      with:
+        service-id: ${{ secrets.SERVICE_FE_ID }}
+        api-key: ${{ secrets.RENDER_TOKEN }}
+             
